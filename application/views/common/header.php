@@ -19,7 +19,6 @@
     <link href="/public/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/public/dist/css/style.min.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
 </head>
