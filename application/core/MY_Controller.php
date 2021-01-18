@@ -14,11 +14,16 @@ class MY_Controller extends CI_Controller
         if (!$this->session->userdata("UserId")) {
             return false;
         }
+
+        $user = $this->mmongo->query('baryga.users', ['_id' => $this->session->userdata("UserId")]);
+        $this->session->set_userdata(["UserBalance" => $user[0]->balance]);
+
         return [
             "UserTelegram" => $this->session->userdata("UserTelegram"),
             "UserEmail" => $this->session->userdata("UserEmail"),
             "UserName" => $this->UserName(),
-            "UserId" => $this->session->userdata("UserId")
+            "UserId" => $this->session->userdata("UserId"),
+            "UserBalance" => $this->session->userdata("UserBalance"),
         ];
     }
 

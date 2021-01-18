@@ -16,7 +16,7 @@
                 <form class="form-horizontal form-material" onsubmit="return false;">
                     <div class="form-group">
                         <label class="col-md-12">Введите ваш Email указанный при регистрации аккаунта
-                            <p><small class="text-muted">На данный Email будет отправлено сообщение с паролем</small></p>
+                            <p><small class="text-muted">На данный Email будет отправлено сообщение с ссылкой</small></p>
                         </label>
                         <div class="col-md-12">
                             <input name="email_recovery" type="email" placeholder="usermail@mail.com"

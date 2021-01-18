@@ -13,7 +13,8 @@ class Auth extends MY_Controller
                 "UserId" => $result[0]->_id,
                 "UserEmail" => $result[0]->email,
                 "UserName" => $result[0]->login,
-                "UserTelegram" => $result[0]->telegram
+                "UserTelegram" => $result[0]->telegram,
+                "UserBalance" => $result[0]->balance
             ]);
             echo json_encode('true');
             return true;

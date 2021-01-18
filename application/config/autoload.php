@@ -7,4 +7,5 @@ $autoload['drivers'] = array();
 $autoload['helper'] = array();
 $autoload['config'] = array();
 $autoload['language'] = array();
-$autoload['model'] = array('mmongo');
+$autoload['model'] = array('mmongo', 'interface_autoloader');
+

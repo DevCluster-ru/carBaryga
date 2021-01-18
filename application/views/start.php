@@ -1,6 +1,3 @@
-<!-- ============================================================== -->
-<!-- Page wrapper  -->
-<!-- ============================================================== -->
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -9,6 +6,11 @@
         <div class="row align-items-center">
             <div class="col-5">
                 <h4 class="page-title">Управление подписками</h4>
+
+                <?php if ($this->session->userdata('UserBalance') <= 0): ?>
+                    <p class="text-muted">Приобретите ПРО аккаунт и получите все возможности сервиса</p>
+                <?php endif; ?>
+
 
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
@@ -21,8 +23,16 @@
             </div>
             <div class="col-7">
                 <div class="text-right upgrade-btn">
-                    <a href="#" class="btn btn-danger text-white"
-                       target="_blank">Купить ПРО аккаунт</a>
+
+                    <?php if ($this->session->userdata('UserBalance') <= 0): ?>
+                        <button href="#" class="btn btn-danger text-white"
+                                target="_blank" id="subscription">Купить на PRO аккаунт
+                        </button>
+                    <?php else: ?>
+                        <div class="alert alert-success d-inline-block" role="alert">
+                            Вы используете PRO аккаунт
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -39,6 +49,57 @@
         <!-- ============================================================== -->
         <!-- Table -->
         <!-- ============================================================== -->
+
+        <div class="row subscription">
+            <div class="col-12">
+                <form action="subscription/preparationForPayment" method="POST" data-form="payment">
+                    <h5>Выберите способ оплаты:</h5>
+                    <ul class="payment-menu bg-white p-3">
+                        <p class="text-muted">Стоимость месячной подписки 299 руб.</p>
+                        <li>
+                            <img src="/public/assets/images/payment-icons/qiwi_icon.png" alt="qiwi_icon">
+                            <label class="title_payment" for="qiwi_payment">Qiwi</label>
+                            <input type="radio" name="payment_method" value="qiwi_payment" id="qiwi_payment">
+                        </li>
+                        <li>
+                            <img src="/public/assets/images/payment-icons/yandex_icon.png" alt="yandex_icon">
+                            <label class="title_payment" for="yandex_payment">Яндекс.Деньги</label>
+                            <input type="radio" name="payment_method" value="yandex_payment" id="yandex_payment">
+                        </li>
+                        <li>
+                            <img src="/public/assets/images/payment-icons/card_icon.png" alt="card_icon">
+                            <label class="title_payment" for="card_payment">Карта</label>
+                            <input type="radio" name="payment_method" value="card_payment" id="card_payment">
+                        </li>
+                        <button type="submit" class="btn btn-primary">Оплатить</button>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <style>
+            form[data-form=payment] input[type=radio] {
+                cursor: pointer;
+            }
+
+            .subscription {
+                display: none;
+            }
+
+            label.title_payment {
+                cursor: pointer;
+            }
+
+            ul.payment-menu {
+                list-style: none;
+            }
+
+            ul.payment-menu li {
+                display: inline-block;
+                margin-right: 50px;
+            }
+        </style>
+
         <div class="row">
             <!-- column -->
             <div class="col-12">
@@ -48,12 +109,45 @@
                         <div class="d-md-flex align-items-center">
                             <div>
                                 <h4 class="card-title">Активные подписки</h4>
-                                <h5 class="card-subtitle">На Вашем аккаунте доступно подписок: 10</h5>
+                                <?php if ($this->session->userdata('UserBalance') <= 0): ?>
+                                    <h5 class="card-subtitle">На Вашем аккаунте доступно подписок: 0</h5>
+                                    <div class="alert alert-warning" role="alert">
+                                        Вам необходимо приобрести PRO аккаунт
+                                    </div>
+                                <?php else: ?>
+                                    <h5 class="card-subtitle">На Вашем аккаунте доступно подписок: 10</h5>
+                                    <div class="alert alert-info" role="alert">
+                                        Вы не можете активировать одновременно более 10 задач
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <!-- title -->
                     </div>
 
+                    <style>
+
+                        .toast {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                    </style>
+
+                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                        <div class="toast-header">
+                            <!--                            <img src="..." class="rounded mr-2" alt="...">-->
+                            <strong class="mr-auto text-danger">Ошибка</strong>
+                            <!--                            <small class="text-muted">11 mins ago</small>-->
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                            Вы превысили лимит отслеживаемых задач
+                        </div>
+                    </div>
 
                     <div class="table-responsive">
                         <table class="table v-middle">
@@ -106,13 +200,13 @@
                                              onclick="removeTask('<?php echo $item->_id ?>')">
                                             <i class="far fa-window-close"></i>
                                         </div>
-<style>
-    .roundButton{
-        cursor: pointer;
-        display: inline-block;
-        vertical-align: middle;
-    }
-</style>
+                                        <style>
+                                            .roundButton {
+                                                cursor: pointer;
+                                                display: inline-block;
+                                                vertical-align: middle;
+                                            }
+                                        </style>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -123,25 +217,8 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Table -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
     </div>
+
     <!-- ============================================================== -->
-    <!-- End Container fluid  -->
+    <!-- End Page wrapper  -->
     <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
-    <footer class="footer text-center">
-        All Rights Reserved by Xtreme Admin. Designed and Developed by <a
-                href="https://www.wrappixel.com">WrapPixel</a>.
-    </footer>
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->

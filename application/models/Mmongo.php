@@ -132,11 +132,27 @@ class Mmongo extends CI_Model
 
     public function statusChange($post)
     {
+        $error = false;
+
+        $user_tasks = $this->query("baryga.tasks", [
+            "status" => true,
+            "userId" => $this->session->userdata('UserId'),
+        ]);
+        $count_tasks = count($user_tasks);
+
+        if ($count_tasks >= 10) {
+            $error['msg'] = 'Лимит отслеживаемых заданий';
+            return $error;
+        }
+
         $id = new \MongoDB\BSON\ObjectId($post["id"]);
         $status = $this->query("baryga.tasks", ["_id" => $id]);
-        if (!$status[0]->status) $status = true;
-        else $status = false;
 
+        if (!$status[0]->status) {
+            $status = true;
+        } else {
+            $status = false;
+        }
 
         return $this->update("baryga.tasks", ['_id' => $id], ["status" => $status]);
     }

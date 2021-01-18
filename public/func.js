@@ -90,16 +90,19 @@ function editTask()
     });
 }
 
-
-
-
 function statusTaskChange(id) {
     $.ajax({
         type: "POST",
         url: "/ajax/updateTask",
         data: "id=" + id,
         success: function (result) {
-            location.reload()
+            console.log(result);
+            if (typeof result !== 'undefined' && result != '') {
+                let error = JSON.parse(result);
+                $('.toast').toast('show');
+            } else {
+                location.reload()
+            }
         }
     });
 }
@@ -137,8 +140,8 @@ function recoveryPass() {
         url: "/recovery/sendRecoveredPass",
         data: $("#recovery_password form").serialize(),
         success: function (result) {
+            // console.log(result);
             let data = JSON.parse(result);
-
             if (typeof data.error !== 'undefined') {
                 // если есть ошибки валидации
                 $('#send-status').html('<p class="error-status">' + data.error + '</p>');
@@ -162,6 +165,15 @@ $(document).ready(function (){
     $('input[id=telegram]').on('blur', function () {
         if ($(this).val() == '@') {
             $(this).val('');
+        }
+    });
+
+    $('#subscription').click(function () {
+
+        if ($('.subscription').css('display') !== 'none') {
+            $('.subscription').css('display', 'none');
+        } else {
+            $('.subscription').css('display', 'block');
         }
     });
 });

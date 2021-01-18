@@ -4858,13 +4858,15 @@ class Phpmailer
          */
 
         $this->isSMTP();
-        $this->Host = 'smtp.gmail.com';
+//        $this->SMTPDebug = 1;
+        $this->Host = 'smtp.yandex.ru';
         $this->SMTPAuth = true;
-        $this->Username = 'tester.cars1'; // Логин в google. Именно логин, без @gmail.com
-        $this->Password = 'admintest123'; // Пароль
+        $this->Username = 'carbotcar@yandex.ru'; // Логин в yandex
+        $this->Password = 'cdvokuplyoemvwdn'; // Пароль
         $this->SMTPSecure = 'ssl';
         $this->Port = 465;
-        $this->setFrom('tester.cars1@gmail.com'); // Ваш Email
+
+        $this->setFrom('carbotcar@yandex.ru'); // Ваш Email
 
         $this->addAddress($data_array['email']); // Email получателя
 //            $this->phpmailer->addAddress($email); // Еще один email, если нужно
