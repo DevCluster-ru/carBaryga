@@ -151,12 +151,10 @@
                             src="/public/assets/images/users/1.jpg" alt="user" class="rounded-circle"
                             width="31"></a>
                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                        My Profile</a>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                        My Balance</a>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                        Inbox</a>
+                    <a class="dropdown-item" onclick="modalProfileSettings(); return false;"><i class="ti-user m-r-5 m-l-5"></i>
+                        Профиль</a>
+                    <a class="dropdown-item" onclick="modalBalance(); return false;"><i class="ti-wallet m-r-5 m-l-5"></i>
+                        Баланс</a>
                 </div>
             </li>
 

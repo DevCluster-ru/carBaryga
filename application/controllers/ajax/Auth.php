@@ -22,4 +22,40 @@ class Auth extends MY_Controller
             return false;
         }
     }
+
+    public function editProfile()
+    {
+        $params = $this->input->post();
+        $error  = $this->validateReg($params);
+        $user = false;
+
+        if (!$error) {
+            $this->mmongo->update('baryga.users', ['_id' => $this->session->userdata('UserId')], [
+                'login' => $params['login'],
+                'password' => $params['password'],
+                'email' => $params['email'],
+                'telegram' => $params['telegram'],
+            ]);
+
+            $this->session->set_userdata([
+                "UserEmail" => $params['email'],
+                "UserName" => $params['login'],
+                "UserTelegram" => $params['telegram'],
+            ]);
+
+            return true;
+
+        } else {
+            echo json_encode($error);
+            return false;
+        }
+    }
+
+    public function getBalance()
+    {
+        $email = $this->session->userdata('UserEmail');
+        $result = $this->mmongo->query('baryga.users', ['email' => $email]);
+        echo json_encode($result[0]->balance);
+    }
+
 }

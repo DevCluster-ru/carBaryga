@@ -2,8 +2,6 @@
 
 class MY_Controller extends CI_Controller
 {
-
-
     function __construct()
     {
         parent::__construct();
@@ -45,7 +43,10 @@ class MY_Controller extends CI_Controller
         $error    = false;
 
         /* Проверка на существование почты или телеграмма */
-        $error    = $this->isExistUser($post, $error);
+
+        if (empty($this->session->userdata('UserId'))) {
+            $error    = $this->isExistUser($post, $error);
+        }
 
         if (isset($post['telegram'])) {
             $telegram = str_replace("@","", $post["telegram"]);

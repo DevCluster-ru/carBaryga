@@ -10,6 +10,9 @@ class Base_payment
     protected $strategy;
     protected $codeigniter;
 
+    /**
+     * @param array $payment - имя класса сервиса ['payment' => service_name]
+    */
     public function __construct($payment)
     {
         $this->strategy     = $payment['payment'];
@@ -32,6 +35,7 @@ class Base_payment
 
     /**
      * Метод принятия ответа от сервисов. Используется в роутинге, в контроллере PaymentsWebhooks
+     * @param json $data_response = '{ "bill" : { "status" : { "value" : "PAID" }, "billId" : "600469100d583" ... } }
     */
     public function processingResponse($data_response)
     {
@@ -40,6 +44,7 @@ class Base_payment
 
     /**
      * Предусмотрим замену платежной системы на ходу
+     * @param array $payment - имя класса сервиса ['payment' => service_name]
     */
     public function setPayment($payment)
     {

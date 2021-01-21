@@ -21,8 +21,6 @@ class Qiwi_payment implements PaymentServiceInterface
 
         $pay_url = $this->concreteGetPayUrl();
 
-        //Напоминание: добавить в конце &success url
-
         header('Location: ' . $pay_url);
     }
 
@@ -97,6 +95,7 @@ class Qiwi_payment implements PaymentServiceInterface
                     'user_id' => $user_id,
                     'email' => $user_email,
                     'billId' => $bill_id,
+                    'payment_service' => 'QIWI',
                     'status' => 'WAIT',
                     'date' => date('Y-m-d H:i:s')
                 ]);
@@ -129,6 +128,7 @@ class Qiwi_payment implements PaymentServiceInterface
                     $this->codeigniter->mmongo->update('baryga.users', ['billId' => $bill_id], [
                         'balance' => 299,
                     ]);
+
                     $this->codeigniter->mmongo->update('baryga.billing_history', ['billId' => $bill_id], [
                     'status' => 'PAID'
                 ]);

@@ -16,7 +16,7 @@
                         <div class="user-content hide-menu m-l-10">
                             <a href="javascript:void(0)" class="" id="Userdd" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h5 class="m-b-0 user-name font-medium"><?php echo $User["UserTelegram"]?> <i
+                                <h5 class="m-b-0 user-name font-medium"><?php echo $User["UserName"]?> <i
                                         class="fa fa-angle-down"></i></h5>
                                 <span class="op-5 user-email"><?php echo $User["UserEmail"]?></span>
                             </a>

@@ -41,10 +41,14 @@ class Mmongo extends CI_Model
 
     }
 
-    function update($collection, $filter, $row)
+    function update($collection, $filter, $row, $multi = null)
     {
         $bulk = new MongoDB\Driver\BulkWrite;
+        if ($multi != null) {
+            $bulk->update($filter, ['$set' => $row], $multi);
+        }
         $bulk->update($filter, ['$set' => $row]);
+
         $this->manager()->executeBulkWrite($collection, $bulk);
     }
 
@@ -69,58 +73,36 @@ class Mmongo extends CI_Model
             "login" => $post["login"],
             "password" => $post["password"],
             "email" => $post["email"],
-            "telegram" => str_replace("@", "", $post["telegram"])
+            "telegram" => str_replace("@", "", $post["telegram"]),
+            "balance" => 0,
         ));
 
         return $this->tryAuth(array("email" => $post["email"], "password" => $post["password"]));
     }
 
-    public function validate($post)
-    {
-
-        /* Метод валидации полей регистрации и авторизации */
-
-        $error = false;
-        $telegram = str_replace("@", "", $post["telegram"]);
-
-        if (isset($post['login']) && strlen($post['login']) < 4) {
-            $error['login'] = 'Минимальная длина логина 4 символа';
-        }
-
-        if (isset($post['password'])) {
-
-            switch ($post['password']) {
-                case strlen($post['password']) < 6:
-                    $error['password'][] = 'Минимальная длина пароля 6 символов';
-                case $post['password'] != $post['confirm_password']:
-                    $error['password'][] = 'Подтверждение пароля не совпадает';
-                case preg_match("/.*[0-9].*/", $post['password']) == false:
-                    $error['password'][] = 'Пароль должен содержать хотя бы одну цифру';
-            }
-        }
-
-        if (isset($post['email'])) {
-
-            if (strpos($post['email'], '@') == false && strlen($post['email']) < 3) {
-                $error['email'] = 'Не корректный Email';
-            }
-        }
-
-        if (isset($post["telegram"]) && empty($telegram)) {
-            $error['telegram'] = 'Не корректный telegram name';
-        }
-        return $error;
-    }
-
+    /**
+     * @param array POST [data => string_params, region_name, city_name]
+    */
     public function addTask($post)
     {
+        parse_str($post['data'], $params);
+
+        $region_id      = !isset($params['region_id']) || $params['region_id'] == 'Выберите область'    ? NULL : $params['region_id'];
+        $region_name    = $post['region_name'] == 'Выберите область' || empty($post['region_name'])     ? NULL : $post['region_name'];
+        $city_id        = !isset($params['city_id']) || $params['city_id'] == 'Выберите город'          ? NULL : $params['city_id'];
+        $city_name      = $post['city_name'] == 'Выберите город' || empty($post['city_name'])           ? NULL : $post['city_name'];
+
         $this->addRow('baryga.tasks', array(
             "userId" => $this->session->userdata("UserId"),
-            "keyWords" => $post["keyWords"],
-            "priceFrom" => $post["priceFrom"],
-            "priceTo" => $post["priceTo"],
-            "pubTime" => $post["pubTime"],
-            "status" => false
+            "keyWords" => $params["keyWords"],
+            "priceFrom" => $params["priceFrom"],
+            "priceTo" => $params["priceTo"],
+            "pubTime" => $params["pubTime"],
+            "status" => false,
+            "region_id" => $region_id,
+            "region_name" => $region_name,
+            "city_id" => $city_id,
+            "city_name" => $city_name,
         ));
     }
 
@@ -128,6 +110,15 @@ class Mmongo extends CI_Model
     {
         $id = new \MongoDB\BSON\ObjectId($this->session->userdata("UserId"));
         return $this->query("baryga.tasks", ["userId" => $id]);
+    }
+
+    public function stopActiveTasks()
+    {
+        return $tasks = $this->update("baryga.tasks",
+            ["userId" => $this->session->userdata("UserId"), 'status' => true],
+            ['status' => false],
+            ['multi' => true]
+        );
     }
 
     public function statusChange($post)
@@ -157,7 +148,6 @@ class Mmongo extends CI_Model
         return $this->update("baryga.tasks", ['_id' => $id], ["status" => $status]);
     }
 
-
     public function removeTask($taskId)
     {
         $id = new \MongoDB\BSON\ObjectId($taskId);
@@ -179,5 +169,10 @@ class Mmongo extends CI_Model
 
 
         );
+    }
+
+    public function historyPaymentForUser()
+    {
+        return $this->mmongo->query('baryga.billing_history', ['user_id' => $this->session->userdata('UserId')]);
     }
 }

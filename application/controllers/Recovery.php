@@ -27,22 +27,18 @@ class Recovery extends MY_Controller
         } else {
 
             $this->load->library('phpmailer');
+            $this->load->helper('url');
 
             $params = [
                 'recovery_id' => $user[0]->login,
                 'recovery_hash' => md5(uniqid($email)),
             ];
 
-            $this->load->helper('url');
-
-//            $link = base_url("recovery/finish?" . http_build_query($params));
-
             $anchor = anchor("recovery/finish?" . http_build_query($params), "восстановление пароля");
 
             $data_send = [
                 'email'     => $email, // email получателя
                 'subject'   => 'Восстановление пароля', // заголовок письма
-//                'body'      => "Перейдите по ссылке для восстановления пароля: " . "<a href='$link'>$link</a>", // текст письма
                 'body'      => "Перейдите по ссылке для восстановления пароля: " . $anchor, // текст письма
             ];
 

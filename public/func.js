@@ -5,7 +5,7 @@ function tryReg() {
         url: "/ajax/registration",
         data: $("#regr form").serialize(),
         success: function (result) {
-console.log(result);
+
             let obj_error = false;
             if (result.length != 0) {
                 obj_error = JSON.parse(result);
@@ -57,12 +57,46 @@ function tryAuth() {
 }
 
 function addTask() {
+
+    let region_name = $('select[name=region_id]').find('option:selected').text();
+    let city_name = $('select[name=city_id]').find('option:selected').text();
+
+    let datas_form = $("#addTaskId form").serialize();
+
     $.ajax({
         type: "POST",
-        url: "/ajax/addTask",
-        data: $("#addTaskId form").serialize(),
+        url: "/ajax/task/addTask",
+        data: {
+            data : datas_form,
+            region_name : region_name,
+            city_name : city_name,
+        },
         success: function (result) {
-            location.reload()
+
+            if (result != '') {
+
+                let obj_error = JSON.parse(result);
+
+                $('#errors').empty();
+
+                $.each(obj_error, function (name_input, error) {
+                    name_input = name_input[0].toUpperCase() + name_input.slice(1);
+
+                    if (Array.isArray(error)) {
+                        $.each(error, function (key, text_error) {
+                            text_error = text_error[0].toUpperCase() + text_error.slice(1);
+
+                            $('#errors').append(`<p class="error-item">${name_input} : ${text_error}<br></p>`);
+                        });
+                    } else
+                        $('#errors').append(`<p class="error-item">${name_input} : ${error}</p>`);
+                });
+
+                $('#errors_validate').modal('show');
+
+            } else {
+                location.reload();
+            }
         }
     });
 }
@@ -82,7 +116,7 @@ function editTask()
 {
     $.ajax({
         type: "POST",
-        url: "/ajax/editTask",
+        url: "/ajax/task/editTask",
         data: $("#editTaskId form").serialize(),
         success: function (result) {
             location.reload()
@@ -93,10 +127,10 @@ function editTask()
 function statusTaskChange(id) {
     $.ajax({
         type: "POST",
-        url: "/ajax/updateTask",
+        url: "/ajax/task/updateStatusTask",
         data: "id=" + id,
         success: function (result) {
-            console.log(result);
+
             if (typeof result !== 'undefined' && result != '') {
                 let error = JSON.parse(result);
                 $('.toast').toast('show');
@@ -110,7 +144,7 @@ function statusTaskChange(id) {
 function removeTask(id) {
     $.ajax({
         type: "POST",
-        url: "/ajax/removeTask",
+        url: "/ajax/task/removeTask",
         data: "id=" + id,
         success: function (result) {
              location.reload()
@@ -118,19 +152,69 @@ function removeTask(id) {
     });
 }
 
-function issetAccount() {
+function issetAccount()
+{
     $('#regr').modal('hide');
     $('#auth').modal('show');
 }
-function notIssetAccount() {
+function notIssetAccount()
+{
     $('#auth').modal('hide');
     $('#regr').modal('show');
 }
 
-function modalRecovery() {
+function modalRecovery()
+{
     $('#auth').modal('hide');
     $('#recovery_password').modal('show');
 }
+
+function modalProfileSettings()
+{
+    $('#profile_settings').modal('show');
+}
+
+function modalBalance()
+{
+    $('#topbar-balance').modal('show');
+}
+
+function editProfile()
+{
+    $.ajax({
+        type: "POST",
+        url: "/ajax/auth/editProfile",
+        data: $("#editProfileForm").serialize(),
+        success: function (result) {
+
+            if (typeof result != 'undefined' && result != '') {
+                let obj_error = JSON.parse(result);
+
+                $('#errors').empty();
+
+                $.each(obj_error, function (name_input, error) {
+                    name_input = name_input[0].toUpperCase() + name_input.slice(1);
+
+                    if (Array.isArray(error)) {
+                        $.each(error, function (key, text_error) {
+                            text_error = text_error[0].toUpperCase() + text_error.slice(1);
+
+                            $('#errors').append(`<p class="error-item">${name_input} : ${text_error}<br></p>`);
+                        });
+                    } else
+                        $('#errors').append(`<p class="error-item">${name_input} : ${error}</p>`);
+                });
+
+                $('#errors_validate').css('z-index', '1051');
+                $('#errors_validate').modal('show');
+
+            }
+            $('#profile_settings').modal('hide');
+            document.location.reload();
+        }
+    });
+}
+
 function recoveryPass() {
 
     /* Клик по кнопке "Отправить" (забытый пароль) */
@@ -177,3 +261,44 @@ $(document).ready(function (){
         }
     });
 });
+
+function loadCity(select)
+{
+    // послыаем AJAX запрос, который вернёт список городов для выбранной области
+
+    let region_id =  select.val();
+
+    // console.log(region_id);
+    $.ajax({
+        dataType: "json",
+        type: 'get',
+        url: '/start/getCities',
+        data: {
+            region_id : region_id,
+        },
+        success: function (city_list) {
+
+            let div_select_group_city = document.querySelector('.select-group-city');
+                div_select_group_city.innerHTML = '';
+
+            let citySelect = document.createElement('select');
+                citySelect.setAttribute('name', 'city_id');
+            citySelect.setAttribute('class', 'form-control p-1');
+
+            let option = document.createElement('option');
+                option.setAttribute('class', 'option-select-city');
+                option.textContent = 'Выберите город';
+
+                div_select_group_city.append(citySelect);
+
+            let select_city = $('select[name=city_id]');
+                select_city.append(option);
+
+            $.each(city_list, function(i){
+                select_city.append('<option value="' + i + '">' + this + '</option>');
+            });
+        }, error: function (err) {
+            console.log(err);
+        }
+    });
+}

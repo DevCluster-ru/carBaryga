@@ -10,5 +10,8 @@
 </div>
 <?php $this->load->view('modal/addTask');?>
 <?php $this->load->view('modal/editTask');?>
+<?php $this->load->view('modal/errors_validate');?>
+<?php $this->load->view('modal/profile_settings');?>
+<?php $this->load->view('modal/topbar-balance');?>
 
 <?php $this->load->view('common/footer');?>

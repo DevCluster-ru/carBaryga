@@ -61,16 +61,16 @@
                             <label class="title_payment" for="qiwi_payment">Qiwi</label>
                             <input type="radio" name="payment_method" value="qiwi_payment" id="qiwi_payment">
                         </li>
-                        <li>
-                            <img src="/public/assets/images/payment-icons/yandex_icon.png" alt="yandex_icon">
-                            <label class="title_payment" for="yandex_payment">Яндекс.Деньги</label>
-                            <input type="radio" name="payment_method" value="yandex_payment" id="yandex_payment">
-                        </li>
-                        <li>
-                            <img src="/public/assets/images/payment-icons/card_icon.png" alt="card_icon">
-                            <label class="title_payment" for="card_payment">Карта</label>
-                            <input type="radio" name="payment_method" value="card_payment" id="card_payment">
-                        </li>
+<!--                        <li>-->
+<!--                            <img src="/public/assets/images/payment-icons/yandex_icon.png" alt="yandex_icon">-->
+<!--                            <label class="title_payment" for="yandex_payment">Яндекс.Деньги</label>-->
+<!--                            <input type="radio" name="payment_method" value="yandex_payment" id="yandex_payment">-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <img src="/public/assets/images/payment-icons/card_icon.png" alt="card_icon">-->
+<!--                            <label class="title_payment" for="card_payment">Карта</label>-->
+<!--                            <input type="radio" name="payment_method" value="card_payment" id="card_payment">-->
+<!--                        </li>-->
                         <button type="submit" class="btn btn-primary">Оплатить</button>
                     </ul>
                 </form>
@@ -106,6 +106,8 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- title -->
+                        <p class="font-bold border-bottom pb-1 balance">Баланс: <?php echo $this->session->userdata('UserBalance'); ?> руб.</p>
+
                         <div class="d-md-flex align-items-center">
                             <div>
                                 <h4 class="card-title">Активные подписки</h4>
@@ -115,7 +117,7 @@
                                         Вам необходимо приобрести PRO аккаунт
                                     </div>
                                 <?php else: ?>
-                                    <h5 class="card-subtitle">На Вашем аккаунте доступно подписок: 10</h5>
+                                    <h5 class="card-subtitle">На Вашем аккаунте осталось доступных подписок: <?php echo 10 - $count_active_tasks; ?></h5>
                                     <div class="alert alert-info" role="alert">
                                         Вы не можете активировать одновременно более 10 задач
                                     </div>
@@ -135,7 +137,7 @@
                         }
                     </style>
 
-                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
                         <div class="toast-header">
                             <!--                            <img src="..." class="rounded mr-2" alt="...">-->
                             <strong class="mr-auto text-danger">Ошибка</strong>
@@ -157,6 +159,7 @@
                                 <th class="border-top-0">Цена от</th>
                                 <th class="border-top-0">Цена до</th>
                                 <th class="border-top-0">Время жизни объявления (мин)</th>
+                                <th class="border-top-0">Область(город)</th>
                                 <th class="border-top-0">Статус</th>
                                 <th class="border-top-0">Управление</th>
                             </tr>
@@ -173,9 +176,22 @@
                                         <?php echo $item->priceFrom ?>
                                     </td>
                                     <td>
-                                        <?php echo $item->priceTo ?></td>
+                                        <?php echo $item->priceTo ?>
+                                    </td>
                                     <td>
-                                        <?php echo $item->pubTime ?></td>
+                                        <?php echo $item->pubTime ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            if ($item->region_id === NULL && $item->city_id === NULL) {
+                                                echo 'Местоположение не выбрано';
+                                            } elseif ($item->region_name !== NULL && $item->city_name === NULL) {
+                                                echo $item->region_name . ", Город не выбран";
+                                            } elseif ($item->region_name !== NULL && $item->city_name !== NULL) {
+                                                echo "$item->region_name, $item->city_name";
+                                            }
+                                        ?>
+                                    </td>
                                     <?php if ($item->status == false) { ?>
                                         <td><label style="cursor: pointer"
                                                    onclick="statusTaskChange('<?php echo $item->_id ?>')"
