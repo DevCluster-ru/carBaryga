@@ -1,0 +1,83 @@
+DEBUG - 2021-02-27 20:14:00 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:14:00 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:14:00 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:14:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:14:00 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:14:00 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:14:00 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:16:09 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:16:09 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:16:09 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:16:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:16:09 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:16:09 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:16:09 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:19:18 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:19:18 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:19:18 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:19:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:19:18 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:19:18 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:19:18 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:26:21 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:26:21 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:26:21 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:26:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:26:22 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:26:22 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:26:22 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:26:25 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:26:25 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:26:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:26:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:26:25 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:26:25 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:26:25 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:28:32 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:28:32 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:28:32 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:28:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:28:32 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:28:32 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:28:32 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:31:41 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:31:41 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:31:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:31:42 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:31:42 --> Severity: error --> Exception: Class 'MongoDB\BSON\ObjectId' not found W:\domains\Carbot.loc\application\models\Mmongo.php 265
+DEBUG - 2021-02-27 20:33:12 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:33:12 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:33:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:33:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:33:12 --> Severity: error --> Exception: Class 'MongoDB\BSON\ObjectId' not found W:\domains\Carbot.loc\application\models\Mmongo.php 265
+DEBUG - 2021-02-27 20:33:13 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:33:13 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:33:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:33:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:33:14 --> Severity: error --> Exception: Class 'MongoDB\BSON\ObjectId' not found W:\domains\Carbot.loc\application\models\Mmongo.php 265
+DEBUG - 2021-02-27 20:37:20 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:37:20 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:37:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:37:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:37:21 --> Severity: error --> Exception: Class 'MongoDB\BSON\ObjectId' not found W:\domains\Carbot.loc\application\models\Mmongo.php 265
+DEBUG - 2021-02-27 20:37:29 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:37:29 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:37:29 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:37:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:37:30 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:37:30 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:37:30 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:38:41 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:38:41 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:38:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:38:42 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:38:42 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:38:42 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:38:42 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+DEBUG - 2021-02-27 20:38:52 --> UTF-8 Support Enabled
+DEBUG - 2021-02-27 20:38:52 --> No URI present. Default controller set.
+DEBUG - 2021-02-27 20:38:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-02-27 20:38:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2021-02-27 20:38:52 --> Severity: Warning --> require(application/interfaces/payment/MongoDB\BSON\ObjectId.php): failed to open stream: No such file or directory W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
+ERROR - 2021-02-27 20:38:52 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at W:\domains\Carbot.loc\system\core\Exceptions.php:271) W:\domains\Carbot.loc\system\core\Common.php 570
+ERROR - 2021-02-27 20:38:52 --> Severity: Compile Error --> require(): Failed opening required 'application/interfaces/payment/MongoDB\BSON\ObjectId.php' (include_path='.') W:\domains\Carbot.loc\application\models\Interface_autoloader.php 15
